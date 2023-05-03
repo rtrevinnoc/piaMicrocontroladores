@@ -4,7 +4,9 @@ import cv2, serial, time, glob
 face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 # To capture video from webcam. 
-# cap = cv2.VideoCapture(0)
+# cap = cv2.VideoCapture(2)
+
+# detect all connected webcams
 for i in glob.glob("/dev/video?"):
     cap = cv2.VideoCapture(i)
     if cap is None or not cap.isOpened():
@@ -12,7 +14,7 @@ for i in glob.glob("/dev/video?"):
     else:
       break
 
-arduino = serial.Serial(port="/dev/ttyACM0", baudrate=9600, timeout=.1)
+# arduino = serial.Serial(port="/dev/ttyACM0", baudrate=9600, timeout=.1)
 # To use a video file as input 
 # cap = cv2.VideoCapture('filename.mp4')
 
@@ -35,13 +37,9 @@ while True:
         cv2.rectangle(img, (x, y), (x+w, y+h), (255, 0, 0), 2)
         center = ((x+x+w)/2, (y+y+h)/2)
         centerAngles = [map_range(center[0], 0, width, 0, 180), map_range(center[1], 0, height, 0, 180)];
-        # print(height, width, center, [map_range(center[0], 0, width, 0, 180), map_range(center[1], 0, height, 0, 180)])
-        arduino.write(bytes(f"{centerAngles[0]},{centerAngles[1]},120,120\r\n", 'utf-8'))
-    else:
-        arduino.write(bytes(f"0,0,0,0\r\n", 'utf-8'))
 
     time.sleep(0.1)
-    print(arduino.readline())
+    # print(arduino.readline())
     # Display
     cv2.imshow('img', img)
     # Stop if escape key is pressed
