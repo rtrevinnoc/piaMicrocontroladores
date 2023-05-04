@@ -36,9 +36,9 @@ while True:
         center = ((x+x+w)/2, (y+y+h)/2)
         centerAngles = [map_range(center[0], 0, width, 0, 180), map_range(center[1], 0, height, 0, 180)];
         # print(height, width, center, [map_range(center[0], 0, width, 0, 180), map_range(center[1], 0, height, 0, 180)])
-        arduino.write(bytes(f"{centerAngles[0]},{centerAngles[1]},120,120\r\n", 'utf-8'))
+        arduino.write(bytes(f"{centerAngles[0]},{centerAngles[1]},90,60\r\n", 'utf-8'))
     else:
-        arduino.write(bytes(f"0,0,0,0\r\n", 'utf-8'))
+        arduino.write(bytes(f"0,0,0,120\r\n", 'utf-8'))
 
     time.sleep(0.1)
     print(arduino.readline())
