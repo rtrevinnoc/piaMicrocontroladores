@@ -37,11 +37,12 @@ while True:
         cv2.rectangle(img, (x, y), (x+w, y+h), (255, 0, 0), 2)
         center = ((x+x+w)/2, (y+y+h)/2)
         centerAngles = [map_range(center[0], 0, width, 0, 180), map_range(center[1], 0, height, 0, 180)];
+        print(centerAngles)
 
     time.sleep(0.1)
     # print(arduino.readline())
     # Display
-    cv2.imshow('img', img)
+    # cv2.imshow('img', img)
     # Stop if escape key is pressed
     k = cv2.waitKey(30) & 0xff
     if k==27:

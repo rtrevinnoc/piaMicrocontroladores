@@ -43,7 +43,7 @@ while True:
     time.sleep(0.1)
     print(arduino.readline())
     # Display
-    cv2.imshow('img', img)
+    # cv2.imshow('img', img)
     # Stop if escape key is pressed
     k = cv2.waitKey(30) & 0xff
     if k==27:
